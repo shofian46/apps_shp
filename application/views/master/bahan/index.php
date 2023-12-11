@@ -38,22 +38,22 @@
 						<tr>
 							<?php
 							$i = 1;
-							foreach($bahan->result_array() as $brg) : ?>
+							foreach($bahan->result_array() as $bhn) : ?>
 								<td><?= $i++; ?></td>
-								<td><?= $brg['kode_bahan']; ?></td>
-								<td><?= $brg['nama_bahan']; ?></td>
-								<td><?= $brg['category_name']; ?></td>
-								<td><?= $brg['warna_name']; ?></td>
-								<td><?= $brg['satuan']; ?></td>
-								<td><?= $brg['gudang_name']; ?></td>
-								<td><?= $brg['stok']; ?></td>
+								<td><?= $bhn['kode_bahan']; ?></td>
+								<td><?= $bhn['nama_bahan']; ?></td>
+								<td><?= $bhn['category_name']; ?></td>
+								<td><?= $bhn['warna_name']; ?></td>
+								<td><?= $bhn['satuan']; ?></td>
+								<td><?= $bhn['gudang_name']; ?></td>
+								<td><?= $bhn['stok']; ?></td>
 								<td class="align-middle text-center">
-									<a href="<?= base_url('master/e_barang/') . $brg['id_barang']?>" class="btn btn-warning rounded-0 btn-sm text-xs">
+									<a href="<?= base_url('master/e_bahan/') . $bhn['id_bahan']?>" class="btn btn-warning rounded-0 btn-sm text-xs">
 										<span class="icon text-white" title="Edit">
 											<i class="fas fa-edit"></i>
 										</span>
 									</a> |
-									<a href="<?= base_url('master/d_barang/') . $brg['id_barang'] ?>" class="btn btn-danger rounded-0 btn-sm text-xs" onclick="return confirm('Deleted Barang will lost forever. Still want to delete?')">
+									<a href="<?= base_url('master/d_bahan/') . $bhn['id_bahan'] ?>" class="btn btn-danger rounded-0 btn-sm text-xs" onclick="return confirm('Deleted Bahan will lost forever. Still want to delete?')">
 										<span class="icon text-white" title="Delete">
 											<i class="fas fa-trash-alt"></i>
 										</span>

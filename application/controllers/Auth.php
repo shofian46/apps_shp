@@ -11,7 +11,7 @@ class Auth extends CI_Controller {
           redirect('admin');
           break;
         case 2:
-          redirect('dashboard');
+          redirect('user');
           break;
         case 3:
           redirect('profile');

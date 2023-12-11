@@ -61,3 +61,6 @@ $route['delete_menu'] = 'menu/delete_menu';
 $route['edit_menu'] = 'menu/edit_menu';
 $route['updated_menu'] = 'menu/updated_menu';
 
+$route['stock/in'] = 'stock/stock_in_data';
+$route['stock/in/add'] = 'stock/stock_in_add';
+

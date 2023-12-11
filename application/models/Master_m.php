@@ -91,6 +91,28 @@ class Master_m extends CI_Model{
 		return $newKode;  // return kode baru
 	}
 
+	public function getIdBahan()
+	{
+		$this->db->select('RIGHT(kode_bahan,2) as kode_bahan', false);
+		$this->db->order_by("kode_bahan", "ASC");
+		$this->db->limit(1);
+		$query = $this->db->get('m_bahan');
+		if ($query->num_rows() <> 0) {
+			$data       = $query->row(); // ambil satu baris data
+			$kodeBahan  = intval($data->kode_bahan) + 1; // tambah 1
+		} else {
+			$kodeBahan  = 1; // isi dengan 1
+		}
+
+		$lastKode = str_pad($kodeBahan, 2, "0", STR_PAD_LEFT);
+		$tahun    = date("Y-");
+		$Gd      = "Bhn-";
+
+		$newKode  = $Gd . $lastKode;
+
+		return $newKode;  // return kode baru
+	}
+
 	public function getBarang($id = null)
 	{
 		$this->db->select('m_barang.*, warna.nama_warna as warna_name, gudang.nama_gudang as gudang_name')

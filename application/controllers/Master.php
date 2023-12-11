@@ -10,7 +10,7 @@ class Master extends CI_Controller {
 	}
 
 	public function index(){
-				$data=[
+			$data=[
 			'title' => 'Gudang',
 			'user' => $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(),
 			'gudang' => $this->db->get('gudang')->result_array()
@@ -392,4 +392,120 @@ class Master extends CI_Controller {
 
 		$this->template->load('template', 'master/bahan/index', $data);
 	}
+
+	public function a_bahan(){
+		$data=[
+			'title' => 'Bahan',
+			'user' => $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(),
+			'warnaId' => $this->db->get('warna')->result_array(),
+			'categoryId' => $this->db->get('category')->result_array(),
+			'gudangId' => $this->db->get('gudang')->result_array(),
+			'barangId' => $this->Master_m->getIdBahan()
+		];
+
+		// Form Validation
+    $this->form_validation->set_rules('m_kode_bahan', 'ID Bahan', 'required|trim');
+    $this->form_validation->set_rules('m_bahan', 'Bahan', 'required|trim');
+    $this->form_validation->set_rules('m_kode_category', 'Category', 'required|trim');
+    $this->form_validation->set_rules('m_kode_warna', 'Warna', 'required|trim');
+    $this->form_validation->set_rules('satuan', 'Satuan', 'required|trim');
+    $this->form_validation->set_rules('m_kode_gudang', 'Gudang', 'required|trim');
+    $this->form_validation->set_rules('stok', 'Stok', 'required|trim');
+
+    if ($this->form_validation->run() == true) {
+      $this->_addBahan();
+    }
+		$this->template->load('template', 'master/bahan/a_bahan', $data);
+	}
+
+	private function _addBahan(){
+    $data = [
+      'kode_bahan' => $this->input->post('m_kode_bahan'),
+      'nama_bahan' => $this->input->post('m_bahan'),
+      'id_category' => $this->input->post('m_kode_category'),
+      'id_warna' => $this->input->post('m_kode_warna'),
+      'satuan' => $this->input->post('satuan'),
+      'id_gudang' => $this->input->post('m_kode_gudang'),
+      'stok' => $this->input->post('stok'),
+    ];
+    // $m_kode_bahan=$this->input->post('m_kode_bahan');
+      $this->db->insert('m_bahan', $data);
+      $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert"> Successfully added a new bahan!.
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>',
+			'</div>');
+      redirect('master/bahan');
+  }
+
+	public function d_bahan($m_id_bahan)
+  {
+    $query = 'ALTER TABLE `m_bahan` AUTO_INCREMENT = 1';
+    $this->db->delete('m_bahan', ['id_bahan' => $m_id_bahan]);
+    $this->db->query($query);
+    $this->session->set_flashdata('message', 
+				'<div class="alert alert-success alert-dismissible fade show" role="alert"> Successfully deleted a bahan!.
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>',
+			'</div>');
+    redirect('master/bahan');
+  }
+
+	public function e_bahan($m_id_bahan)
+  {
+    // Edit Menu
+    $data=[
+			'title' => 'Bahan',
+			'user' => $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(),
+			'bhn_old' => $this->db->get_where('m_bahan', ['id_bahan' => $m_id_bahan])->row_array(),
+			'warnaId' => $this->db->get('warna')->result_array(),
+			'gudangId' => $this->db->get('gudang')->result_array(),
+			'categoryId' => $this->db->get('category')->result_array(),
+			'bahanId' => $this->Master_m->getIdBahan()
+		];
+    // Form Validation
+    $this->form_validation->set_rules('m_kode_bahan', 'ID Bahan', 'required|trim');
+    $this->form_validation->set_rules('m_bahan', 'Bahan', 'required|trim');
+    $this->form_validation->set_rules('m_kode_category', 'Category', 'required|trim');
+    $this->form_validation->set_rules('m_kode_warna', 'Warna', 'required|trim');
+    $this->form_validation->set_rules('satuan', 'Satuan', 'required|trim');
+    $this->form_validation->set_rules('m_kode_gudang', 'Gudang', 'required|trim');
+    $this->form_validation->set_rules('stok', 'Stok', 'required|trim');
+
+    if ($this->form_validation->run() == false) {
+      $this->template->load('template', 'master/bahan/e_bahan', $data);
+    } else {
+			$m_kode_bahan = $this->input->post('m_kode_bahan');
+			$m_nama_bahan = $this->input->post('m_bahan');
+			$m_category_id = $this->input->post('m_kode_category');
+			$m_warna_id = $this->input->post('m_kode_warna');
+			$m_satuan = $this->input->post('satuan');
+			$m_kode_gudang = $this->input->post('m_kode_gudang');
+			$stok = $this->input->post('stok');
+
+      $this->_editBahan($m_id_bahan, $m_kode_bahan, $m_nama_bahan, $m_category_id, $m_warna_id, $m_satuan, $m_kode_gudang, $stok);
+    }
+  }
+
+	private function _editBahan($m_id_bahan, $m_kode_bahan, $m_nama_bahan, $m_category_id, $m_warna_id, $m_satuan, $m_kode_gudang, $stok)
+  {
+    $data=[
+			'kode_bahan'=>$m_kode_bahan,
+			'nama_bahan'=>$m_nama_bahan, 
+			'id_category'=>$m_category_id, 
+			'id_warna'=>$m_warna_id, 
+			'satuan'=>$m_satuan, 
+			'id_gudang'=>$m_kode_gudang, 
+			'stok'=>$stok, 
+		];
+    $this->db->update('m_bahan', $data, ['id_bahan' => $m_id_bahan]);
+    $this->session->set_flashdata('message','<div class="alert alert-success alert-dismissible fade show" role="alert"> Successfully update a bahan!.
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>',
+			'</div>');
+    redirect('master/e_bahan/'.$m_id_bahan);
+  }
+
 }
