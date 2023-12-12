@@ -37,6 +37,14 @@
 						</select>
 						<?= form_error('barang_id', '<small class="text-danger">', '</small>') ?>
 					</div>
+					<div class="form-group">
+						<label for="satuan" class="col-form-label-lg">Satuan</label>
+						<select name="satuan" id="satuan" class="form-control form-control-md">
+							<option value="">--- Choose ---</option>
+							
+						</select>
+						<?= form_error('satuan', '<small class="text-danger">', '</small>') ?>
+					</div>
 					
 					<button type="submit" class="btn btn-md btn-primary bg-gradient-primary btn-icon-split mt-4 float-right rounded-pill">
 						<span class="icon text-white">
