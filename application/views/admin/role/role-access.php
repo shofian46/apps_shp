@@ -1,8 +1,14 @@
-				<!-- Page Heading -->
+					<nav aria-label="breadcrumb">
+						<ol class="breadcrumb d-flex justify-content-end">
+							<li class="breadcrumb-item"><a href="<?= base_url(); ?>">Dashboard</a></li>
+							<li class="breadcrumb-item active" aria-current="page">Role Access</li>
+						</ol>
+					</nav>
+					<!-- Page Heading -->
           <h1 class="h3 mb-4 text-gray-800"><?= $title; ?> &mdash; <?= $role['role'] ?></h1>
 
           <div class="row">
-            <div class="col-lg-3">
+            <div class="col-lg">
               <a href="<?= base_url('admin/role'); ?>" class="btn btn-sm btn-default bg-gradient-light border rouned-0 btn-icon-split mb-4">
                 <span class="icon text-white-600">
                   <i class="fas fa-chevron-left"></i>

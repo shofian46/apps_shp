@@ -20,7 +20,7 @@
                     <input type="text" class="form-control form-control-lg" name="m_menu" id="m_menu" value="<?= set_value('m_menu')?>">
                     <?= form_error('m_menu', '<small class="text-danger">', '</small>') ?>
                   </div>
-                  <button type="submit" class="btn btn-sm btn-primary bg-gradient-primary btn-icon-split mt-4 float-right rounded-pill">
+                  <button type="submit" class="btn btn-md btn-primary bg-gradient-primary btn-icon-split mt-4 float-right rounded-pill" id="load">
                     <span class="icon text-white">
                       <i class="fas fa-plus-circle"></i>
                     </span>

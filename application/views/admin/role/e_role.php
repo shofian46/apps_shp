@@ -1,4 +1,11 @@
-          <!-- Page Heading -->
+					<nav aria-label="breadcrumb">
+						<ol class="breadcrumb d-flex justify-content-end">
+							<li class="breadcrumb-item"><a href="<?= base_url(); ?>">Dashboard</a></li>
+							<li class="breadcrumb-item" aria-current="page">Role</li>
+							<li class="breadcrumb-item active" aria-current="page">Update Role</li>
+						</ol>
+					</nav>
+					<!-- Page Heading -->
           <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
 
           <a href="<?= base_url('admin/role'); ?>" class="btn btn-sm btn-default bg-gradient-light border rouned-0 btn-icon-split mb-4">

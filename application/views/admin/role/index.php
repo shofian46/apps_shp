@@ -1,6 +1,11 @@
-					<!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
-
+					<nav aria-label="breadcrumb">
+						<ol class="breadcrumb d-flex justify-content-end">
+							<li class="breadcrumb-item"><a href="<?= base_url(); ?>">Dashboard</a></li>
+							<li class="breadcrumb-item active" aria-current="page">Role</li>
+						</ol>
+					</nav>
+						<!-- Page Heading -->
+					<h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
           <div class="row">
             <div class="col-lg-3">
               <a href="<?= base_url('admin/a_role'); ?>" class="btn btn-primary bg-gradient-primary btn-icon-split rounded-pill mb-4">
@@ -14,52 +19,53 @@
 					<div>
 						<?= $this->session->flashdata('message'); ?>
 					</div>
-
           <!-- Data Table Role-->
-          <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">DataTables <?= $title; ?></h6>
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-hover" id="dataTable">
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>Role Name</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                 
-                  <tbody>
-                    <?php
-                    $i = 1;
-                    foreach ($role as $r) :
-                    ?>
-                      <tr>
-                        <td class="align-middle"><?= $i++; ?></td>
-                        <td class="align-middle"><?= $r->role; ?></td>
-                        <td class="align-middle text-center">
-                          <a href="<?= base_url('admin/roleAccess/') . $r->id ?>" class="btn btn-primary rounded-0 btn-sm text-xs">
-                            <span class="icon text-white" title="Edit">
-                              <i class="fa fa-eye"></i>
-                            </span>
-                          </a> |
-                          <a href="<?= base_url('admin/e_role/') . $r->id ?>" class="btn btn-info rounded-0 btn-sm text-xs">
-                            <span class="icon text-white" title="Edit">
-                              <i class="fas fa-edit"></i>
-                            </span>
-                          </a> |
-                          <a href="<?= base_url('admin/d_role/') . $r->id ?>" class="btn btn-danger rounded-0 btn-sm text-xs" onclick="return confirm('Deleted Role will lost forever. Still want to delete?')">
-                            <span class="icon text-white" title="Delete">
-                              <i class="fas fa-trash-alt"></i>
-                            </span>
-                          </a>
-                        </td>
-                      </tr>
-                    <?php endforeach; ?>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
+					<div class="row">
+						<div class="col-lg-6 col-md-6 col-sm-6 card shadow mb-4 border-bottom-primary">
+							<div class="card-header py-3">
+								<h6 class="m-0 font-weight-bold text-primary">DataTables <?= $title; ?></h6>
+							</div>
+							<div class="card-body">
+								<div class="table-responsive">
+									<table class="table table-hover" id="dataTable">
+										<thead>
+											<tr>
+												<th>#</th>
+												<th>Role Name</th>
+												<th></th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php
+											$i = 1;
+											foreach ($role as $r) :
+											?>
+												<tr>
+													<td class="align-middle"><?= $i++; ?></td>
+													<td class="align-middle"><?= $r->role; ?></td>
+													<td >
+														<div class="dropdown">
+															<button class="btn btn-primary bg-gradient-primary dropdown-toggle rounded-pill" type="button" data-toggle="dropdown" aria-expanded="false">
+																Actions
+															</button>
+															<div class="dropdown-menu">
+																<a href="<?= base_url('admin/roleAccess/') . $r->id ?>" class="dropdown-item">
+																Access
+																</a>
+																<a href="<?= base_url('admin/e_role/') . $r->id ?>" class="dropdown-item">
+																Update
+																</a>
+																<a href="<?= base_url('admin/d_role/') . $r->id ?>" class="dropdown-item" onclick="return confirm('Deleted Role will lost forever. Still want to delete?')">
+																Delete
+																</a>
+															</div>
+														</div>
+													</td>
+												</tr>
+											<?php endforeach; ?>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>

@@ -7,9 +7,8 @@
             </span>
             <span class="text">Back</span>
           </a>
-        <div class="row justify-content-center">
-          <form action="" method="POST" class="col-lg-5 col-md-6 col-sm-12 p-0">
-            <div class="card shadow-lg">
+          <form action="" method="POST" class="row user">
+            <div class="col-lg col-md col-sm-6 p-0 my-2 mx-2 card shadow-lg">
               <h5 class="card-header">Master Data Bahan</h5>
               <div class="card-body">
                 <h5 class="card-title">Update Data Bahan</h5>
@@ -42,6 +41,10 @@
 											<?= form_error('m_kode_warna'); ?>
 										</div>
 									</div>
+              </div>
+            </div>
+						<div class="col-lg col-md col-sm-6 p-0 my-2 mx-2 card shadow-lg">
+              <div class="card-body">
 									<div class="form-group">
 										<label for="m_kode_warna" class="col-form-label-lg">Warna</label>
 										<select name="m_kode_warna" id="m_kode_warna" class="form-control <?= form_error('m_kode_warna') ? 'is-invalid' : ''; ?>">
@@ -78,13 +81,9 @@
 										<label for="stok" class="col-form-label-lg">Stock</label>
 										<input type="number" name="stok" id="stok" class="form-control" value="<?= $bhn_old['stok']; ?>">
 									</div>
-                  <button type="submit" class="btn btn-sm btn-primary bg-gradient-primary btn-icon-split mt-4 float-right rounded-pill">
-                    <span class="icon text-white">
-                      <i class="fas fa-plus-circle"></i>
-                    </span>
+                  <button type="submit" class="btn btn-md btn-primary bg-gradient-primary btn-block mt-4 float-right rounded-pill">
                     <span class="text">Change</span>
                   </button>
               </div>
             </div>
           </form>
-				</div>
